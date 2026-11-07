@@ -367,13 +367,55 @@ img[src] + .shine:before, .shine.run:before { animation-play-state: running; }
 .chat-pinned small { display: flex; align-items: center; color: var(--green); font-weight: 700; font-size: 17px; margin-bottom: 4px; }
 .chat-pinned small img { width: 18px; height: 18px; margin-right: 6px; }
 .chat-list { flex: 1 1 auto; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 130px 18px 110px; }
-.chat-pinned:not([hidden]) + .chat-list { padding-top: 12px; }
+/* a margin, not padding: the list clips at its padding edge, so a cut line would touch the box above */
+.chat-pinned:not([hidden]) + .chat-list { padding-top: 0; margin-top: 12px; }
 .msg { font-size: 24px; line-height: 36px; word-wrap: break-word; }
 .msg .u { font-weight: 700; }
 .msg .badge { display: inline-block; width: 22px; height: 22px; margin-right: 6px; vertical-align: -3px; }
 .msg .emote { display: inline-block; height: 32px; vertical-align: -8px; margin: 0 2px; }
 .msg.event { color: var(--green); font-weight: 700; }
 .msg.sys { color: var(--muted); }
+
+/* ---- poll: above the chat, or alone in the top right corner over the video ---- */
+/* The top bar's glass (.nav-pill). The video is AVPlay's own plane under the page, so Chromium 63
+   can't blur it, and there is no copy to stretch as the bar does: there it is the clear dark tint. */
+.poll { position: absolute; z-index: 2; right: 18px; top: 130px; width: 499px; padding: 16px 18px 14px; border-radius: 24px;
+  background: rgba(22,22,24,.55); border: 1px solid rgba(255,255,255,.06); font-size: 22px;
+  -webkit-backdrop-filter: blur(24px) saturate(1.4); backdrop-filter: blur(24px) saturate(1.4); }
+.chat .poll { position: static; flex: 0 0 auto; margin: 130px 18px 0; }
+.chat .poll:not([hidden]) + .chat-pinned { margin-top: 12px; }
+.chat .poll:not([hidden]) ~ .chat-list { padding-top: 0; margin-top: 12px; }
+.poll-head { display: flex; align-items: center; font-size: 18px; font-weight: 700; }
+.poll-kind { color: var(--green); }
+.poll-time { color: var(--muted); }
+.poll-x { width: 36px; height: 36px; margin: -6px -8px 0 10px; border-radius: 50%; text-align: center; font-size: 30px; line-height: 34px;
+  font-weight: 400; color: var(--muted); }
+.poll-x.focused { background: #fff; color: #000; }
+.poll-time { margin-left: auto; }
+.poll-q { font-size: 24px; font-weight: 700; margin: 6px 0 10px; word-wrap: break-word; }
+.poll-o { position: relative; display: flex; align-items: center; height: 44px; margin-top: 8px; padding: 0 14px; border-radius: 22px;
+  background: rgba(255,255,255,.08); overflow: hidden; transition: opacity .3s; }
+.poll-fill { position: absolute; left: 0; top: 0; bottom: 0; background: rgba(255,255,255,.2); transition: width .4s ease-out; }
+/* picking: the focused option white, its bar a dark shade of it */
+.poll-o.focused { background: #fff; color: #000; }
+.poll-o.focused .poll-fill { background: rgba(0,0,0,.14); }
+/* the own vote: Kick green ring, tick and figure */
+.poll-o.mine { box-shadow: inset 0 0 0 3px var(--green); }
+.poll-o.mine .poll-pct { color: var(--green); }
+.poll-tick { position: relative; flex: 0 0 auto; width: 26px; height: 26px; margin-left: 8px; background: var(--green);
+  -webkit-mask: url(../img/ic_check.svg) center/26px no-repeat; }
+/* ended: the leader solid Kick green with dark text, the rest faded */
+.poll-o.win { background: var(--green); color: var(--ink); box-shadow: none; }
+.poll-o.win .poll-fill { display: none; }
+.poll-o.win .poll-pct { color: var(--ink); }
+.poll-o.win .poll-tick { background: var(--ink); }
+.poll-o.lose { opacity: .55; }
+.poll.ended .poll-kind, .poll.ended .poll-time { color: var(--muted); }
+.poll-label { position: relative; min-width: 0; flex: 1 1 auto; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.poll-pct { position: relative; flex: 0 0 auto; margin-left: 12px; font-weight: 700; }
+.poll-foot { display: flex; justify-content: space-between; margin-top: 10px; font-size: 18px; color: var(--muted); }
+.poll-hint { color: var(--text); font-weight: 600; }
+.poll-hint.err { color: #ff6b6b; }
 
 /* ---- dialogs ---- */
 .modal { position: fixed; z-index: 40; left: 0; top: 0; width: 1920px; height: 1080px; background: rgba(0,0,0,.8); }

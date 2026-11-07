@@ -2,7 +2,7 @@
 (function () {
   'use strict';
 
-  var K = window.K = { VERSION: '1.3.0', HELPER: 'http://127.0.0.1:47820', HELPER_IMAGES: 'http://127.0.0.1:47821', HELPER_ID: 'KickLive01.Helper' };
+  var K = window.K = { VERSION: '1.3.1', HELPER: 'http://127.0.0.1:47820', HELPER_IMAGES: 'http://127.0.0.1:47821', HELPER_ID: 'KickLive01.Helper' };
 
   K.$ = function (id) { return document.getElementById(id); };
 

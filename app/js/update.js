@@ -5,7 +5,7 @@
 (function (K) {
   'use strict';
 
-  var REPO = 'madarra16/kick-tizen', KEY = 'kick.update', DAY = 24 * 3600 * 1000, TV_STORE = 'A2STVStore.Store';
+  var REPO = 'Replexo/kick-tizen', KEY = 'kick.update', DAY = 24 * 3600 * 1000, TV_STORE = 'A2STVStore.Store';
   var saved = K.store.get(KEY, null);
 
   function parts(v) { return String(v || '').replace(/^v/, '').split('.').map(function (n) { return parseInt(n, 10) || 0; }); }

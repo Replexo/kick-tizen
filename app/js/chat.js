@@ -1,6 +1,6 @@
 /* Read-only live chat over Kick's Pusher websocket (like the official TV app, sending happens on
    the phone). Messages are rendered in batches so busy chats don't stall the TV. With the chat
-   hidden it still listens (quiet), for the stream ending and for raids. */
+   hidden it still listens (quiet), for the stream ending, raids and polls (poll.js). */
 (function (K) {
   'use strict';
 
@@ -108,6 +108,8 @@
       case 'App\\Events\\GiftedSubscriptionsEvent':
         note(K.t('{name} gifted {n} subs', { name: d.gifter_username || K.t('Someone'), n: (d.gifted_usernames || []).length || 1 })); break;
       case 'App\\Events\\StreamHostEvent': note(K.t('{name} hosted with {n} viewers', { name: d.host_username || K.t('Someone'), n: d.number_viewers || 0 })); break;
+      case 'App\\Events\\PollUpdateEvent': K.poll.update(d); break;
+      case 'App\\Events\\PollDeleteEvent': K.poll.remove(); break;
       case 'App\\Events\\StopStreamBroadcast': if (K.player.ended) { K.player.ended(); } break;
       // A raid: kick.com moves viewers to the hosted channel after a countdown.
       case 'App\\Events\\ChatMoveToSupportedChannelEvent':
@@ -150,6 +152,7 @@
       info = opts;
       listEl().textContent = '';
       pinned(null);
+      K.poll.start(opts.slug);
       note(K.t('Welcome to the chat room!'), 'sys');
       K.api.messages(opts.channelId, function (err, d) {
         if (myGen !== gen || err || !d || !d.data || opts.quiet) { return; }
@@ -180,6 +183,7 @@
       clearInterval(pingTimer);
       clearTimeout(retryTimer);
       queue = [];
+      K.poll.stop();
       if (ws) { try { ws.onclose = null; ws.close(); } catch (e) { /* already closed */ } ws = null; }
     }
   };

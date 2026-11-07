@@ -299,6 +299,7 @@
     var ch = state.channel;
     K.$('chat').hidden = !state.chat;
     K.$('player').classList.toggle('chat-on', !!state.chat);
+    K.poll.place();
     K.chat.start({ channelId: ch.id, roomId: ch.chatroom && ch.chatroom.id, slug: ch.slug, subBadges: ch.subscriber_badges || [], quiet: !state.chat });
   }
   function stopChat() { K.chat.stop(); K.$('chat').hidden = true; K.$('player').classList.remove('chat-on'); }
@@ -706,6 +707,7 @@
 
     key: function (k) {
       var overlayOpen = !K.$('overlay').hidden, onSeek = overlayOpen && K.focus.current === K.$('seekBar');
+      if (K.poll.inside()) { K.poll.key(k); if (overlayOpen) { armOverlay(); } return; }
       if (k === 'back') {
         if (seek) { cancelSeek(); } else if (overlayOpen) { hideOverlay(); } else { close(); }
         return;
@@ -719,11 +721,13 @@
       if (k === 'playpause' || k === 'play' || k === 'pause') { togglePause(); return; }
       if (k === 'stop') { close(); return; }
       if ((k === 'left' || k === 'right') && (!overlayOpen || onSeek)) { nudge(k === 'left' ? -1 : 1); return; }
+      // Up goes into a poll that can be voted on (poll.js).
+      if (k === 'up' && !overlayOpen && K.poll.enter()) { return; }
       if (!overlayOpen) { showOverlay(); return; }
       armOverlay();
       if (k === 'enter') {
         if (onSeek) { if (seek) { applySeek(); } else { togglePause(); } } else if (K.focus.current && K.focus.current._select) { K.focus.current._select(); }
-      } else { K.focus.move(k); }
+      } else if (!K.focus.move(k) && k === 'up') { K.poll.enter(); }
     }
   };
 })(window.K);

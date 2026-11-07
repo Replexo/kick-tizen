@@ -2,6 +2,15 @@
    has use Kick's translations from its APK; the others are ours. */
 window.K_I18N = {
 "ar": {
+"Poll": "استطلاع",
+"{t} left": "متبقٍ {t}",
+"Poll ended": "انتهى الاستطلاع",
+"{n} votes": "{n} صوت",
+"You voted": "لقد صوّتّ",
+"Sign in to vote": "سجّل الدخول للتصويت",
+"Press ▲ to vote": "اضغط ▲ للتصويت",
+"Press ▲ to close": "اضغط ▲ للإغلاق",
+"Vote failed. Try again.": "تعذّر التصويت. حاول مرة أخرى.",
 "*Categories* For You": "*فئات* لك",
 "*Streams* For You": "*بثوث* لك",
 "18+ Mature Content Warning": "تحذير: محتوى للبالغين +18",
@@ -205,6 +214,15 @@ window.K_I18N = {
 "{t} behind live": "متأخر {t} عن المباشر"
 },
 "de": {
+"Poll": "Umfrage",
+"{t} left": "Noch {t}",
+"Poll ended": "Umfrage beendet",
+"{n} votes": "{n} Stimmen",
+"You voted": "Du hast abgestimmt",
+"Sign in to vote": "Zum Abstimmen anmelden",
+"Press ▲ to vote": "▲ drücken zum Abstimmen",
+"Press ▲ to close": "▲ drücken zum Schließen",
+"Vote failed. Try again.": "Abstimmen fehlgeschlagen. Versuch es noch mal.",
 "*Categories* For You": "*Kategorien* für dich",
 "*Streams* For You": "*Streams* für dich",
 "18+ Mature Content Warning": "Warnung: Erwachsene Inhalte (18+)",
@@ -408,6 +426,15 @@ window.K_I18N = {
 "{t} behind live": "{t} hinter live"
 },
 "es": {
+"Poll": "Encuesta",
+"{t} left": "Quedan {t}",
+"Poll ended": "Encuesta finalizada",
+"{n} votes": "{n} votos",
+"You voted": "Has votado",
+"Sign in to vote": "Inicia sesión para votar",
+"Press ▲ to vote": "Pulsa ▲ para votar",
+"Press ▲ to close": "Pulsa ▲ para cerrar",
+"Vote failed. Try again.": "No se pudo votar. Inténtalo de nuevo.",
 "*Categories* For You": "*Categorías* para ti",
 "*Streams* For You": "*Streams* para ti",
 "18+ Mature Content Warning": "Advertencia: contenido para mayores de edad (+18)",
@@ -611,6 +638,15 @@ window.K_I18N = {
 "{t} behind live": "{t} por detrás del directo"
 },
 "fr": {
+"Poll": "Sondage",
+"{t} left": "Encore {t}",
+"Poll ended": "Sondage terminé",
+"{n} votes": "{n} votes",
+"You voted": "Vous avez voté",
+"Sign in to vote": "Connectez-vous pour voter",
+"Press ▲ to vote": "Appuyez sur ▲ pour voter",
+"Press ▲ to close": "Appuyez sur ▲ pour fermer",
+"Vote failed. Try again.": "Échec du vote. Réessayez.",
 "*Categories* For You": "*Catégories* pour toi",
 "*Streams* For You": "Des *streams* pour toi",
 "18+ Mature Content Warning": "Avertissement : contenu adulte (18+)",
@@ -814,6 +850,15 @@ window.K_I18N = {
 "{t} behind live": "{t} de retard sur le direct"
 },
 "hi": {
+"Poll": "पोल",
+"{t} left": "{t} बाकी",
+"Poll ended": "पोल समाप्त",
+"{n} votes": "{n} वोट",
+"You voted": "आपने वोट दिया",
+"Sign in to vote": "वोट देने के लिए साइन इन करें",
+"Press ▲ to vote": "वोट देने के लिए ▲ दबाएँ",
+"Press ▲ to close": "बंद करने के लिए ▲ दबाएँ",
+"Vote failed. Try again.": "वोट नहीं हो सका। फिर से कोशिश करें।",
 "*Categories* For You": "*कैटेगरीज़* आपके लिए",
 "*Streams* For You": "तुम्हारे लिए *स्ट्रीम्स*",
 "18+ Mature Content Warning": "18+ वयस्क कंटेंट की चेतावनी",
@@ -1017,6 +1062,15 @@ window.K_I18N = {
 "{t} behind live": "लाइव से {t} पीछे"
 },
 "ja": {
+"Poll": "投票",
+"{t} left": "残り {t}",
+"Poll ended": "投票終了",
+"{n} votes": "{n} 票",
+"You voted": "投票済み",
+"Sign in to vote": "投票するにはログイン",
+"Press ▲ to vote": "▲ を押して投票",
+"Press ▲ to close": "▲ を押して閉じる",
+"Vote failed. Try again.": "投票できませんでした。もう一度お試しください。",
 "*Categories* For You": "あなたにおすすめの*カテゴリー*",
 "*Streams* For You": "キミにおすすめの*配信*",
 "18+ Mature Content Warning": "18歳以上の成人向けコンテンツ警告",
@@ -1220,6 +1274,15 @@ window.K_I18N = {
 "{t} behind live": "ライブから {t} 遅れ"
 },
 "ko": {
+"Poll": "투표",
+"{t} left": "{t} 남음",
+"Poll ended": "투표 종료",
+"{n} votes": "{n}표",
+"You voted": "투표 완료",
+"Sign in to vote": "투표하려면 로그인하세요",
+"Press ▲ to vote": "▲ 눌러 투표",
+"Press ▲ to close": "▲ 눌러 닫기",
+"Vote failed. Try again.": "투표하지 못했습니다. 다시 시도하세요.",
 "*Categories* For You": "맞춤 *카테고리*",
 "*Streams* For You": "너를 위한 *스트림*",
 "18+ Mature Content Warning": "18세 이상 성인 콘텐츠 경고",
@@ -1423,6 +1486,15 @@ window.K_I18N = {
 "{t} behind live": "라이브보다 {t} 늦음"
 },
 "pt": {
+"Poll": "Enquete",
+"{t} left": "Faltam {t}",
+"Poll ended": "Enquete encerrada",
+"{n} votes": "{n} votos",
+"You voted": "Você votou",
+"Sign in to vote": "Entre para votar",
+"Press ▲ to vote": "Aperte ▲ para votar",
+"Press ▲ to close": "Aperte ▲ para fechar",
+"Vote failed. Try again.": "Não foi possível votar. Tente de novo.",
 "*Categories* For You": "*Categorias* para você",
 "*Streams* For You": "*Streams* para você",
 "18+ Mature Content Warning": "Aviso de conteúdo adulto (+18)",
@@ -1626,6 +1698,15 @@ window.K_I18N = {
 "{t} behind live": "{t} atrás do ao vivo"
 },
 "zh": {
+"Poll": "投票",
+"{t} left": "剩余 {t}",
+"Poll ended": "投票已结束",
+"{n} votes": "{n} 票",
+"You voted": "你已投票",
+"Sign in to vote": "登录后投票",
+"Press ▲ to vote": "按 ▲ 投票",
+"Press ▲ to close": "按 ▲ 关闭",
+"Vote failed. Try again.": "投票失败，请重试。",
 "*Categories* For You": "为你推荐的*分类*",
 "*Streams* For You": "为你推荐的*直播*",
 "18+ Mature Content Warning": "18+ 成人内容警告",

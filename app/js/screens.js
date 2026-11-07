@@ -788,7 +788,7 @@
       var title = '[' + K.deviceName().replace(/^Samsung /, '') + '] Kick ' + K.VERSION + ': ';
       var body = '**TV:** ' + K.deviceName() + '\n**App:** Kick ' + K.VERSION + '\n**Language:** ' + K.prefs.language + ' / ' + K.contentLanguage() +
         '\n\n**What happened?**\n\n\n**What did you expect?**\n';
-      var url = 'https://github.com/madarra16/kick-tizen/issues/new?title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
+      var url = 'https://github.com/Replexo/kick-tizen/issues/new?title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body);
       K.modal.show({ title: K.t('Report a problem'), text: K.t('Scan the QR code and describe what went wrong. Your TV model and app version are already filled in.'),
         qr: url, buttons: [[K.t('Done'), null, true]] });
     });
