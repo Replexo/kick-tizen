@@ -171,6 +171,7 @@
     },
     push: function (s) { inNav = false; nav.classList.remove('in'); stack.push(s); show(s); },
     pop: function () { if (stack.length > 1) { destroy(stack.pop()); show(current()); } },
+    current: current,
 
     // Rebuild a root screen now if it's showing, otherwise the next time it's opened.
     reload: function (name) {

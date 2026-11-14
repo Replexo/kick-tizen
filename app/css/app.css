@@ -49,6 +49,7 @@ img:not([src]) { visibility: hidden; }
 .i-clear { -webkit-mask-image: url(../img/ic_delete.svg); }
 .i-space { -webkit-mask-image: url(../img/keyboard_space_bar.svg); }
 .i-backspace { -webkit-mask-image: url(../img/keyboard_delete.svg); }
+.i-mic { -webkit-mask-image: url(../img/ic_mic.svg); }
 
 /* ---- top navigation (KickTopNavigationBar: 56dp row, pill 16dp from the top) ---- */
 #nav { position: fixed; z-index: 20; left: 0; top: 0; width: 1920px; height: 150px;
@@ -266,6 +267,11 @@ img[src] + .shine:before, .shine.run:before { animation-play-state: running; }
 .kbd { position: absolute; left: 46px; top: 110px; width: 420px; }
 .query { height: 65px; line-height: 65px; background: var(--surface-2); padding: 0 34px; font-size: 34px; margin-bottom: 30px; white-space: nowrap; overflow: hidden; }
 .query.placeholder { color: #777; }
+/* after a voice search (js/voice.js): the spoken text with a green mic at the right */
+.query.voiced { position: relative; padding-right: 68px; }
+.query .i-mic { position: absolute; right: 20px; top: 15px; width: 34px; height: 34px; color: var(--green); }
+.voice-hint { display: flex; align-items: center; margin-top: 26px; color: var(--muted); font-size: 20px; line-height: 28px; width: 420px; }
+.voice-hint .icon { flex: 0 0 auto; width: 28px; height: 28px; margin-right: 12px; }
 /* a 6-column grid: wide keys span columns, so no rounding can push a key onto an extra line */
 .keys { display: grid; grid-template-columns: repeat(6, 1fr); grid-gap: 1px; width: 420px; }
 .key { height: 61px; line-height: 61px; text-align: center; background: var(--key); font-size: 34px; color: var(--text); }

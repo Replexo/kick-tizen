@@ -1,7 +1,7 @@
 """Package app/ as an unsigned Tizen widget: dist/Kick-<version>.wgt.
 
 The TV only installs packages signed with a certificate made for it, so sign while installing,
-for example with `aerotizen --tv <tv-ip> install dist/Kick-<version>.wgt` or Tizen Studio.
+for example with Apps2Samsung (Custom WGT File) or Tizen Studio.
 
 Usage: python3 build.py
 """

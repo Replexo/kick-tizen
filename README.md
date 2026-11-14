@@ -27,6 +27,7 @@ Live streams, clips and chat on Tizen TVs, with the look and feel of Kick's Andr
 - **Subscribe, Join the Chat and Report** from the player, finished on your phone with a QR code
 - **Raids** take you along to the raided channel, and level badges show in chat
 - **Live polls** above the chat, with voting from the remote when signed in
+- **Voice search** on 2021 and newer TVs: hold the remote's mic button and say what you're looking for
 - **Sign in with a QR code**, approved in the Kick phone app; **several accounts** on one TV
 - **Fast on old TVs**: a background helper caches video and skips the TV's slow name lookups
 - **10 languages**: English, Español, Deutsch, Português, Français, 中文, 日本語, 한국어, हिन्दी, العربية.

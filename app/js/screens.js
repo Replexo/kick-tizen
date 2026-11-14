@@ -375,11 +375,26 @@
     kbd.appendChild(query);
     kbd.appendChild(keys);
     s.el.appendChild(kbd);
+    // On TVs that take voice commands (js/voice.js): how to search by voice, under the keyboard.
+    var hint = null;
+    if (K.voice && K.voice.available()) {
+      hint = K.el('div', 'voice-hint');
+      hint.appendChild(K.cards.icon('mic'));
+      hint.appendChild(K.el('span', '', K.t("Hold the mic button on your remote and say what you're looking for")));
+      kbd.appendChild(hint);
+    }
+    // Spoken text shows a green mic in the field (and the hint steps aside) until it's typed over.
+    function voiced(on) {
+      query.classList.toggle('voiced', on);
+      if (on) { query.appendChild(K.cards.icon('mic')); }
+      if (hint) { hint.hidden = on; }
+    }
 
     function type(value) {
       text = value === null ? text.slice(0, -1) : value === '' ? '' : (text + value).slice(0, 40);
       query.textContent = text || K.t('Search');
       query.classList.toggle('placeholder', !text);
+      voiced(false);
       clearTimeout(timer);
       timer = setTimeout(run, 450);
     }
@@ -416,7 +431,7 @@
       if (rec.length) {
         var sec = section(K.t('Recent Search'));
         rec.forEach(function (r) {
-          sec.appendChild(K.cards.button(r, function () { text = r; query.textContent = r; query.classList.remove('placeholder'); run(); }));
+          sec.appendChild(K.cards.button(r, function () { text = r; query.textContent = r; query.classList.remove('placeholder'); voiced(false); run(); }));
         });
         results.appendChild(sec);
       }
@@ -482,6 +497,15 @@
         }
       });
     }
+    // A voice search: the spoken text becomes the query and is searched right away.
+    s.voice = function (said) {
+      text = String(said).replace(/^\s+|\s+$/g, '').slice(0, 40);
+      query.textContent = text || K.t('Search');
+      query.classList.toggle('placeholder', !text);
+      voiced(!!text);
+      clearTimeout(timer);
+      run();
+    };
     recent();
     return s;
   };
