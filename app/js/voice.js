@@ -62,14 +62,15 @@
         onchangeprevioustrack: function () { return K.player.isOpen() ? press('chup') : false; },
         onchangenexttrack: function () { return K.player.isOpen() ? press('chdown') : false; }
       });
-      webapis.voiceinteraction.listen();
       on = true;
+      webapis.voiceinteraction.listen();
     }
   } catch (e) { /* no voice on this TV, or the privilege is missing */ }
 
-  // The mic key on the Search keyboard, for TVs where the remote's mic button wakes another
-  // assistant (Alexa): the browser's own speech recognition, else the TV's keyboard, which has
-  // a dictation mic of its own on these TVs. Either way the words come back through done().
+
+  // The mic key on the Search keyboard, on every TV (the remote's mic button may wake another
+  // assistant, Alexa): the browser's own speech recognition, else the TV's keyboard, which has
+  // a dictation mic of its own on newer TVs. Either way the words come back through done().
   var field = null;
   function keyboard(done) {
     if (!field) {
