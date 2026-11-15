@@ -412,8 +412,11 @@
       key(K.cards.icon('clear'), '', 'w2');
       key(K.cards.icon('space'), ' ', 'w2');
       key(K.cards.icon('backspace'), null, 'w2');
-      key(layout === 'sym' ? 'abc' : '@#&', function () { layout = layout === 'sym' ? 'abc' : 'sym'; build(); }, 'w3');
-      key(layout === 'acc' ? 'abc' : 'ÀÈÜ', function () { layout = layout === 'acc' ? 'abc' : 'acc'; build(); }, 'w3');
+      // With voice (js/voice.js) the last row makes room for a mic key next to the layout keys.
+      var w = hint ? 'w2' : 'w3';
+      key(layout === 'sym' ? 'abc' : '@#&', function () { layout = layout === 'sym' ? 'abc' : 'sym'; build(); }, w);
+      key(layout === 'acc' ? 'abc' : 'ÀÈÜ', function () { layout = layout === 'acc' ? 'abc' : 'acc'; build(); }, w);
+      if (hint) { key(K.cards.icon('mic'), function () { K.voice.dictate(s.voice); }, 'w2'); }
       if (focused >= 0) { K.focus.set(keys.children[Math.min(focused, keys.children.length - 1)]); }
     }
     build();

@@ -67,5 +67,44 @@
     }
   } catch (e) { /* no voice on this TV, or the privilege is missing */ }
 
-  K.voice = { available: function () { return on; } };
+  // The mic key on the Search keyboard, for TVs where the remote's mic button wakes another
+  // assistant (Alexa): the browser's own speech recognition, else the TV's keyboard, which has
+  // a dictation mic of its own on these TVs. Either way the words come back through done().
+  var field = null;
+  function keyboard(done) {
+    if (!field) {
+      field = document.createElement('input');
+      field.type = 'text';
+      field.style.cssText = 'position:absolute;left:-2000px;top:0;width:10px;opacity:0';
+      document.body.appendChild(field);
+    }
+    var prev = document.activeElement;
+    function finish(e) {
+      // 65376 is the TV keyboard's Done, 65385 its Cancel; a blur is the keyboard closing.
+      if (e.type === 'keydown' && e.keyCode !== 65376 && e.keyCode !== 65385) { return; }
+      var said = e.keyCode === 65385 ? '' : field.value;
+      field.removeEventListener('keydown', finish);
+      field.removeEventListener('blur', finish);
+      field.blur();
+      if (prev && prev.focus) { prev.focus(); }
+      if (said.replace(/\s+/g, '')) { done(said); }
+    }
+    field.value = '';
+    field.addEventListener('keydown', finish);
+    field.addEventListener('blur', finish);
+    field.focus();
+  }
+  function dictate(done) {
+    var R = window.SpeechRecognition || window.webkitSpeechRecognition, r, heard = false;
+    if (!R) { keyboard(done); return; }
+    try {
+      r = new R();
+      r.lang = K.prefs.language || 'en';
+      r.onresult = function (e) { heard = true; done(e.results[0][0].transcript); };
+      r.onerror = r.onend = function () { if (!heard) { heard = true; keyboard(done); } };
+      r.start();
+    } catch (e) { keyboard(done); }
+  }
+
+  K.voice = { available: function () { return on; }, dictate: dictate };
 })(window.K);

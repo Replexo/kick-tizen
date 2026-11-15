@@ -242,7 +242,8 @@
   document.addEventListener('keydown', function (e) {
     var k = KEYS[e.keyCode];
     app.lastInput = Date.now();
-    if (!k) { return; }
+    // While the TV's own keyboard is open (the Search mic key, js/voice.js) its keys are its own.
+    if (!k || document.activeElement && document.activeElement.tagName === 'INPUT') { return; }
     e.preventDefault();
     var arrow = k === 'left' || k === 'right' || k === 'up' || k === 'down';
     if (K.modal.isOpen()) {
