@@ -91,6 +91,19 @@
   // ---- screens ----
   function current() { return stack[stack.length - 1]; }
 
+  var STALE_MS = 60000, LIVE_ROOTS = { home: 1, live: 1, categories: 1, following: 1 };
+  function isStale(name) {
+    var s = roots[name];
+    return !!s && !!LIVE_ROOTS[name] && Date.now() - (s.builtAt || 0) > STALE_MS;
+  }
+  // Back from the TV's Home screen, from sleep, or from a stream: reload the screen showing if it is stale.
+  function reloadIfStale() {
+    if (stack.length !== 1 || !stack[0].name || !isStale(stack[0].name)) { return; }
+    if (K.player.isOpen() || K.modal.isOpen()) { return; }
+    app.reload(stack[0].name);
+  }
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) { reloadIfStale(); } });
+
   function destroy(s) {
     if (s.destroy) { s.destroy(); }
     if (s.el.parentNode) { s.el.parentNode.removeChild(s.el); }
@@ -164,7 +177,10 @@
 
     go: function (name) {
       stack.forEach(function (s) { if (!s.root) { destroy(s); } });
+      // Lists of live streams go stale: rebuild a root older than STALE_MS instead of reusing it.
+      if (roots[name] && isStale(name)) { destroy(roots[name]); delete roots[name]; }
       var fresh = !roots[name], s = roots[name] || (roots[name] = K.screens[name]());
+      if (fresh) { s.builtAt = Date.now(); }
       stack = [s];
       if (!fresh && s.refresh) { s.refresh(); }
       show(s);
@@ -209,6 +225,7 @@
       if (!s) { return; }
       if (s.refresh) { s.refresh(); }  // Home's Continue Watching
       K.focus.setScope(s.el);
+      reloadIfStale();
     }
   };
 
